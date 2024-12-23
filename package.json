@@ -1,9 +1,9 @@
 {
-  "name": "vuepress-theme-reco-demo",
+  "name": "japin-docs",
   "version": "2.0.0",
-  "description": "Demo for vuepress-theme-reco@2.x.",
-  "repository": "git@github.com:recoluan/vuepress-theme-reco-demo.git",
-  "author": "reco_luan <recoluan@outlook.com>",
+  "description": "description",
+  "repository": "https://github.com/GitHub-Japin?tab=repositories",
+  "author": "Japin <1940005020@qq.com>",
   "license": "MIT",
   "scripts": {
     "dev": "vuepress dev .",
