@@ -26,29 +26,10 @@ export default defineUserConfig({
     lastUpdatedText: "",
     editLink: false,
     // series 为原 sidebar
-    series: {
-      "/docs/theme-reco/": [
-        {
-          text: "module one",
-          children: ["home", "theme"],
-        },
-        {
-          text: "module two",
-          children: ["api", "plugin"],
-        },
-      ],
-    },
     navbar: [
       { text: "主页", link: "/" },
-      { text: "分类", link: "/categories/reco/1.html" },
-      { text: "标签", link: "/tags/tag1/1.html" },
-      {
-        text: "文档",
-        children: [
-          { text: "vuepress-reco", link: "/docs/theme-reco/theme" },
-          { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
-        ],
-      },
+      { text: "分类", link: "/categories/about/1.html" },
+      { text: "标签", link: "/tags/vue3/1.html" },
       { text: "关于我", children:[
           { text: "介绍", link: "/blogs/other/about"},
           { text: "掘金", link: "https://juejin.cn/user/1858590170683315"},

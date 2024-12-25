@@ -1,6 +1,8 @@
 ---
 title: 关于我
 date: 2024/12/22
+categories:
+ - about
 ---
 
 ### 个人介绍
