@@ -10,12 +10,6 @@ export default defineUserConfig({
   bundler: viteBundler(),
   // bundler: webpackBundler(),
   theme: recoTheme({
-    socialLinks: [
-      {
-        icon: 'IconReco',
-        link: 'https://recoluan.com/'
-      }
-    ],
     logo: "/logo.png",
     author: "Japin",
     authorAvatar: "/avatar.jpg",

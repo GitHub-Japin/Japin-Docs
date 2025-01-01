@@ -70,8 +70,11 @@ v-for="(item,index) in arr" :key="
 2、不建议同时使用v-if v-for，建议套层
 3、参数index为变量，故key绑定时不应该使用index，而应该使用常量
 ```
+各种类型的for循环遍历
+https://blog.csdn.net/qq_18798149/article/details/135089225
 
 ### 计算属性
+computed单行计算不加{}，若加{}则需要return
 ```text
 computed(计算属性) 和 自定义函数拼接 区别：
 computed 缓存，每次调用时，会判断是否需要重新计算，若不需要，则直接返回缓存值
@@ -99,6 +102,73 @@ watch vs. watchEffect
 watch 和 watchEffect 都能响应式地执行有副作用的回调。它们之间的主要区别是追踪响应式依赖的方式：
 watch 只追踪明确侦听的数据源。它不会追踪任何在回调中访问到的东西。另外，仅在数据源确实改变时才会触发回调。watch 会避免在发生副作用时追踪依赖，因此，我们能更加精确地控制回调函数的触发时机。
 watchEffect，则会在副作用发生期间追踪依赖。它会在同步执行过程中，自动追踪所有能访问到的响应式属性。这更方便，而且代码往往更简洁，但有时其响应性依赖关系会不那么明确。
+```
+vue3中computed计算属性和watch监听的异同点详细见
+https://blog.csdn.net/qq_18798149/article/details/135302780
+
+### 属性
+```text
+props 可以使用 defineProps() 宏来声明：
+<script setup>
+//const props = defineProps(['username', 'avatar'])
+
+const props = defineProps({
+		obj: {
+			type: Object,
+			default () {
+				return {
+					username: "匿名",
+					avatar: "../../static/logo.png"
+				}
+			}
+		}
+	})
+</script>
+```
+
+### 插槽
+```text
+为子组件传递一些模板片段:<slot></slot>
+```
+具名插槽:需要多个插槽时
+```text
+<slot name="header"></slot>
+<slot name="footer"></slot>
+
+父组件传递: 
+<template v-slot:header>可简写<template #header>
+    <!-- header 插槽的内容放这里 -->
+</template>
+```
+
+### 事件
+子传父使用emit，参数1代码事件名字，父级用@事件名接受，参数2为传递的参数
+defineEmits(['inFocus', 'submit'])声明发送的事件
+```text
+子组件
+<button @click="$emit('someEvent')">Click Me</button>
+
+父可以通过 v-on (缩写为 @) 来监听事件：
+<MyComponent @some-event="callback" />
+```
+
+### 生命周期
+![生命周期](../../.vuepress/public/img.png)
+
+### defineExpose
+子组件暴露数据、方法给父组件使用，父组件通过ref获取子组件实例，再通过实例调用子组件暴露的方法、数据
+```text
+<script setup>
+import { ref } from 'vue'
+
+const a = 1
+const b = ref(2)
+
+defineExpose({
+  a,
+  b
+})
+</script>
 ```
 
 ### 知识点

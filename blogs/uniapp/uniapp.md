@@ -187,6 +187,56 @@ color	Color		switch 的颜色，同 css 的 color
 
 ```
 
+### 页面生命周期
+	import {
+		onLoad,
+		onReady
+	} from '@dcloudio/uni-app'
+
+```text
+函数名	说明	平台差异说明	最低版本
+onInit	监听页面初始化，其参数同 onLoad 参数，为上个页面传递的数据，参数类型为 Object（用于页面传参），触发时机早于 onLoad	百度小程序	3.1.0+
+onLoad	监听页面加载，该钩子被调用时，响应式数据、计算属性、方法、侦听器、props、slots 已设置完成，其参数为上个页面传递的数据，参数类型为 Object（用于页面传参），参考示例。		
+onShow	监听页面显示，页面每次出现在屏幕上都触发，包括从下级页面点返回露出当前页面		
+onReady	监听页面初次渲染完成，此时组件已挂载完成，DOM 树($el)已可用，注意如果渲染速度快，会在页面进入动画完成前触发		
+onHide	监听页面隐藏		
+onUnload	监听页面卸载		
+onResize	监听窗口尺寸变化	App、微信小程序、快手小程序	
+onPullDownRefresh	监听用户下拉动作，一般用于下拉刷新，参考示例		
+onReachBottom	页面滚动到底部的事件（不是scroll-view滚到底），常用于下拉下一页数据。具体见下方注意事项		
+onTabItemTap	点击 tab 时触发，参数为Object，具体见下方注意事项	微信小程序、QQ小程序、支付宝小程序、百度小程序、H5、App、快手小程序、京东小程序	
+onShareAppMessage	用户点击右上角分享	微信小程序、QQ小程序、支付宝小程序、抖音小程序、飞书小程序、快手小程序、京东小程序	
+onPageScroll	监听页面滚动，参数为Object	nvue不支持	
+onNavigationBarButtonTap	监听原生标题栏按钮点击事件，参数为Object	App、H5	
+onBackPress	监听页面返回，返回 event = {from:backbutton、 navigateBack} ，backbutton 表示来源是左上角返回按钮或 android 返回键；navigateBack表示来源是 uni.navigateBack；详见	app、H5、支付宝小程序	
+onNavigationBarSearchInputChanged	监听原生标题栏搜索输入框输入内容变化事件	App、H5	1.6.0
+onNavigationBarSearchInputConfirmed	监听原生标题栏搜索输入框搜索事件，用户点击软键盘上的“搜索”按钮时触发。	App、H5	1.6.0
+onNavigationBarSearchInputClicked	监听原生标题栏搜索输入框点击事件（pages.json 中的 searchInput 配置 disabled 为 true 时才会触发）	App、H5	1.6.0
+onShareTimeline	监听用户点击右上角转发到朋友圈	微信小程序	2.8.1+
+onAddToFavorites	监听用户点击右上角收藏	微信小程序、QQ小程序	2.8.1+
+```
+
+```text
+uniapp中组件生命周期函数和页面生命周期函数的执行顺序
+不包含组件的页面
+onLoad > onShow > onReady
+
+包含组件的页面
+onLoad > onShow > onBeforeMount > onReady > onMounted
+```
+
+### 尺寸单位
+```text
+uni-app 支持的通用 css 单位包括 px、rpx
+
+px 即屏幕像素
+rpx 即响应式 px，一种根据屏幕宽度自适应的动态单位。以 750 宽的屏幕为基准，750rpx 恰好为屏幕宽度。屏幕变宽，rpx 实际显示效果会等比放大，但在 App（vue2 不含 nvue） 端和 H5（vue2） 端屏幕宽度达到 960px 时，默认将按照 375px 的屏幕宽度进行计算，具体配置参考：rpx 计算配置 。
+```
+
+### 全局样式
+app.vue为全局样式，uni.scss中样式可以直接复制粘贴引入，需要注意自定义样式以；结尾，并且scss为预编译，得重启项目
+
+
 ### 小知识点
 
 ```text
@@ -204,4 +254,65 @@ white-space: nowrap 不换行
 ## 自定义组件
 ```text
 uniapp中自定义组件不需要导包，只需要按照官网格式建目录components即可-》目录-》组件vue
+```
+
+
+### 插件
+在日常编写中发现不断的使用import太麻烦,每次使用组件都需要导入
+可以通过unplugin-auto-import插件来完成
+```text
+npm install unplugin-auto-import
+```
+vite.config.js
+```text
+// 导入 Vite 的配置函数
+import { defineConfig } from 'vite';
+// 导入 UniApp 的 Vite 插件
+import uni from '@dcloudio/vite-plugin-uni';
+// 导入自动导入插件
+import AutoImport from 'unplugin-auto-import/vite';
+ 
+// 定义 Vite 配置
+export default defineConfig({
+    plugins: [
+        // 使用 UniApp 插件
+        uni(),
+        
+        // 自动导入配置
+        AutoImport({
+            imports: [
+                // 预设导入库
+                'vue', // 自动导入 Vue 相关函数
+                'uni-app' // 自动导入 UniApp 相关函数
+            ]
+        })
+    ]
+});
+```
+
+### 交互反馈
+```text
+uni.showToast(OBJECT)显示消息提示框。
+
+uni.hideToast()隐藏消息提示框。
+
+uni.showLoading(OBJECT)显示 loading 提示框, 需主动调用 uni.hideLoading 才能关闭提示框。
+
+uni.showModal(OBJECT)弹框
+
+uni.showActionSheet(OBJECT)从底部向上弹出操作菜单、选项框
+```
+
+### 导航条
+```text
+uni.setNavigationBarTitle(OBJECT)动态设置当前页面的标题。
+
+uni.setNavigationBarColor(OBJECT)设置页面导航条颜色。如果需要进入页面就设置颜色，请延迟执行，防止被框架内设置颜色逻辑覆盖
+
+uni.showNavigationBarLoading(OBJECT)在当前页面显示导航条加载动画。
+
+uni.hideNavigationBarLoading(OBJECT)在当前页面隐藏导航条加载动画。
+
+uni.hideHomeButton(OBJECT)隐藏返回首页按钮。
+
 ```
