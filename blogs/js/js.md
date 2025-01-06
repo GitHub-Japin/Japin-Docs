@@ -69,3 +69,11 @@ console.log(arr); //[5,1,2,3,4]
 ### length
 ### concat
 ### ...
+
+## 数组合并
+### 解构
+```text
+let arr1=[1,2,3];
+let arr2=[4,5,6];
+let arr3=[...arr1,...arr2];
+```
