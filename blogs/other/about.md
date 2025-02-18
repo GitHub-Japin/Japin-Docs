@@ -12,13 +12,13 @@ categories:
 #### 后端
 - 语言：Java、Go
 - 数据库：MySQL/Redis/MongoDB
-- 后端框架：Spring Boot/Spring Cloud/Gin
+- 后端框架：Spring生态（Spring Boot/Spring Cloud）/Gin
 - orm框架：MyBatis/MyBatis-Plus/Gorm
-- 安全框架：Spring Security/Shiro
+- 安全框架：Spring Security/Shiro/SaToken
 - 消息队列：RabbitMQ/Kafka
 - 搜索引擎：Elasticsearch
 #### 前端
-- 前端框架：Vue2/Vue3/React/Electron
+- 前端框架：Vue2/Vue3/Uniapp/React/Electron
 - 组件库：Element UI/Element Plus/Ant Design
 - 工具库：Axios/ECharts/TailWind Css
 #### 运维
@@ -26,4 +26,4 @@ categories:
 - 系统：Linux/Windows
 - 容器：Docker/Kubernetes/Jenkins
 #### 测试
-- 测试工具：JMeter/Selenium
+- 测试工具：JMeter/Selenium/PostMan

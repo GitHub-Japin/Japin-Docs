@@ -414,3 +414,30 @@ uni.compressImage(OBJECT)压缩图片接口，可选压缩质量
 ```text
 图片懒加载： image标签中加入lazy-load，图片懒加载。只针对page与scroll-view下的image有效，在H5中不支持，支持小程序
 ```
+
+### 刷新
+onPullDownRefresh监听该页面用户下拉刷新事件
+```text
+uni.startPullDownRefresh(OBJECT)开始下拉刷新，调用后触发下拉刷新动画，效果与用户手动下拉刷新一致。
+
+uni.stopPullDownRefresh()停止当前页面下拉刷新。
+```
+
+### 滚动
+uni.pageScrollTo(OBJECT)将页面滚动到目标位置。可以指定滚动到具体的scrollTop数值，也可以指定滚动到某个元素的位置
+```text
+参数名	类型	必填	说明
+scrollTop	Number	否	滚动到页面的目标位置（单位px）
+selector	String	否	元素选择器，用于指定要滚动到的元素位置，App、H5、微信小程序2.7.3+ 、支付宝小程序1.20.0+支持
+duration	Number	否	滚动动画的时长，默认300ms，单位 ms
+success	function	否	接口调用成功的回调函数
+fail	function	否	接口调用失败的回调函数
+complete	function	否	接口调用结束的回调函数（调用成功、失败都会执行）
+```
+
+
+## 组件库
+扩展组件 uni-ui  https://zh.uniapp.dcloud.io/component/uniui/quickstart.html
+https://uviewui.com/components/intro.html
+
+## 
